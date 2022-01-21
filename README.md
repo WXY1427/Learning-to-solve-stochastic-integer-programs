@@ -9,8 +9,6 @@ Please refer to: Yaoxin Wu, Wen Song, Zhiguang Cao and Jie Zhang. Learning Scena
 
 ## Running the program
 
-For each problem and size:
-
 ### Training
 
 run jupyter file
@@ -23,3 +21,7 @@ run_to_train.ipynb
 ```
 run_to_test_batch.ipynb
 ```
+
+### Updating
+
+The repository is being updated ...
