@@ -1,6 +1,6 @@
 # Learning-to-solve-stochastic-integer-programs
 
-A semi-supervised learning based on contional variational autoencoder (CVAE) to learn two-stage stochastic integer programs.
+A semi-supervised learning method based on contional variational autoencoder (CVAE) for two-stage stochastic integer programs.
 
 ## Paper
 
