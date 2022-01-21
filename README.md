@@ -4,7 +4,7 @@ A semi-supervised learning method based on contional variational autoencoder (CV
 
 ## Paper
 
-Please refer to: Yaoxin Wu, Wen Song, Zhiguang Cao and Jie Zhang. Learning Scenario Representation for Solving Two-stage Stochastic Integer Programs, International Conference on Learning Representations (ICLR), 2022 (https://openreview.net/forum?id=06Wy2BtxXrz). 
+Please refer to: Yaoxin Wu, Wen Song, Zhiguang Cao and Jie Zhang. Learning Scenario Representation for Solving Two-stage Stochastic Integer Programs, International Conference on Learning Representations (ICLR), 2022. https://openreview.net/forum?id=06Wy2BtxXrz
 
 
 ## Running the program
