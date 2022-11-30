@@ -22,6 +22,4 @@ run_to_train.ipynb
 run_to_test_batch.ipynb
 ```
 
-### Updating
 
-The repository is being updated ...
