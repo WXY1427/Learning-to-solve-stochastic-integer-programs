@@ -30,32 +30,9 @@ class CURL(nn.Module):
         logits = torch.matmul(z_a, Wz.t())  # (B,B)
         #logits = logits - torch.max(logits, 1)[0][:, None]
         logits = self.con(logits)
-#         print(logits)
         return logits
 
-# class CURL(nn.Module):
 
-#     def __init__(self, z_dim):
-#         super(CURL, self).__init__()
-
-#         self.W = nn.Parameter(torch.rand(z_dim, z_dim)) 
-#         self.m1 = nn.BatchNorm1d(128)
-#         self.m2 = nn.BatchNorm1d(128)
-    
-#     def compute_logits(self, z_a, z_pos):
-#         """
-#         Uses logits trick for CURL:
-#         - compute (B,B) matrix z_a (W z_pos.T)
-#         - positives are all diagonal elements
-#         - negatives are all other elements
-#         - to compute loss use multiclass cross entropy with identity matrix for labels
-#         """
-#         Wz = torch.matmul(self.W, z_pos.t())  # (z_dim,B)
-#         Wz = self.m1(Wz.t())
-#         logits = torch.matmul(z_a, Wz.t())  # (B,B)
-#         #logits = logits - torch.max(logits, 1)[0][:, None]
-# #         print(logits)
-#         return logits
 
 
 class VAE(nn.Module):
@@ -79,15 +56,7 @@ class VAE(nn.Module):
         self.decoder = Decoder(
             decoder_layer_sizes, latent_size, conditional, num_labels)
         
-#        self.compress = nn.Sequential()
 
-#         for i, (in_s, out_s) in enumerate(zip([14*14*3,128][:-1], [14*14*3,128][1:])):
-#             self.compress.add_module(
-#                 name="L{:d}".format(i), module=nn.Linear(in_s, out_s))
-#             self.compress.add_module(name="A{:d}".format(i), module=nn.ReLU())       
-            
-#         self.linear_compress = nn.Linear(128, 2)  
-#         self.m = nn.Sigmoid() 
 
         if torch.cuda.is_available():
             print("CUDA available, using GPU ID {}".format(config.gpu_id))
@@ -102,8 +71,7 @@ class VAE(nn.Module):
 
         self.GCN = ResidualGatedGCNModel(config, dtypeFloat, dtypeLong)
         if torch.cuda.is_available():
-            self.GCN.cuda()
-#        print(self.GCN)        
+            self.GCN.cuda()     
 
 
     def forward(self, x, c=None, e=None):
@@ -163,13 +131,6 @@ class Encoder(nn.Module):
         if self.conditional:
             layer_sizes[0] += num_labels
 
-#         self.MLP = nn.Sequential()
-
-#         for i, (in_size, out_size) in enumerate(zip(layer_sizes[:-1], layer_sizes[1:])):
-#             self.MLP.add_module(
-#                 name="L{:d}".format(i), module=nn.Linear(in_size, out_size))
-#             self.MLP.add_module(name="A{:d}".format(i), module=nn.ReLU())
-
         self.linear_means = nn.Linear(layer_sizes[-1], latent_size)
         self.linear_log_var = nn.Linear(layer_sizes[-1], latent_size)     
         
@@ -219,10 +180,6 @@ class Decoder(nn.Module):
                 self.MLP.add_module(name="sigmoid", module=nn.Sigmoid())
 
     def forward(self, z, c):
-
-#         if self.conditional:
-#             c = idx2onehot(c, n=10)
-#             z = torch.cat((z, c), dim=-1)
 
         c = self.linear_dim_red(c)
         
