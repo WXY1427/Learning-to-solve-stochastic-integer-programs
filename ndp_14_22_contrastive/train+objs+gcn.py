@@ -51,7 +51,8 @@ def main(args):
     lb = 5
     ub = 20
     corr = 0.4
-    #------------------
+    
+#-------You may use the commented code to generate the data-----------
 #     scenarios = [] 
     
 #     objs = []
